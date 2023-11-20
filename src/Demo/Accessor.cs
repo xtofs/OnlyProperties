@@ -21,7 +21,7 @@ static class Accessor
             }
             else if (expr is MemberExpression me && me.Member is PropertyInfo pi)
             {
-                properties.Add(pi);
+                properties.Insert(0, pi);
                 expr = me.Expression;
             }
             else
@@ -49,5 +49,10 @@ class Accessor<TSource, TResult>
     public TResult Get(TSource f)
     {
         return func.Compile()(f);
+    }
+
+    public override string ToString()
+    {
+        return $"{parameterExpression.Name}.{string.Join(".", from p in properties select p.Name)}";
     }
 }

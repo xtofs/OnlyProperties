@@ -2,10 +2,11 @@
 
 var a = Accessor.From((Foo foo) => foo.Bar.Baz.Name);
 
+Console.WriteLine(a);
 
 var f = new Foo(new Bar(new Baz("abc")));
 
-System.Console.WriteLine(a.Get(f));
+Console.WriteLine(a.Get(f));
 
 
 
