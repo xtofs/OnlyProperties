@@ -1,5 +1,4 @@
 
-using System.Diagnostics;
 
 static class EnumerableExtensions
 {
