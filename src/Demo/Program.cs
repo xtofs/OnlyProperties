@@ -16,7 +16,14 @@ record Widget(int Value1, string Value2)
     {
         public int Compare(Widget? x, Widget? y)
         {
-            return x is null ? -1 : y is null ? 1 : x.Value1.CompareTo(y.Value1);
+            if (object.ReferenceEquals(x, y)) return 0;
+            if (x is null) return -1; // null is smaller than everything
+            if (y is null) return 1; // everything is larger than null
+
+            return
+                x.Value1.IfNotEqual(y.Value1, out var cmp) ? cmp :
+                x.Value2.IfNotEqual(y.Value2, out cmp) ? cmp :
+                0;
         }
     }
 }

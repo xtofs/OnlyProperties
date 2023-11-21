@@ -4,13 +4,13 @@ static class ComparableExtension
         where T : IComparable<T>
     {
         val = a.CompareTo(b);
-        return val == 0;
+        return val != 0;
     }
 
     public static bool IfNotEqual<T>(this IComparer<T> comparer, T a, T b, out int val)
     {
         val = comparer.Compare(a, b);
-        return val == 0;
+        return val != 0;
     }
 }
 
