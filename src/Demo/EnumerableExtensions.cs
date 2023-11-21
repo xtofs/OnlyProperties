@@ -17,6 +17,7 @@ static class EnumerableExtensions
             switch (comparer.Compare(leftEnum.Current, rightEnum.Current))
             {
                 case -1:
+                case 0:
                     yield return value = leftEnum.Current;
                     leftHasMoved = leftEnum.MoveNext();
                     if (leftHasMoved && comparer.Compare(value, leftEnum.Current) > 0)
@@ -25,7 +26,6 @@ static class EnumerableExtensions
                     }
                     break;
 
-                case 0:
                 case 1:
                     yield return value = rightEnum.Current;
                     rightHasMoved = rightEnum.MoveNext();
